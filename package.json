@@ -1,0 +1,30 @@
+{
+  "name": "cloudnativeapp",
+  "version": "1.0.0",
+  "description": "Exemplo de aplicação Cloud Native desenvolvida em Node.js para a atividade prática da disciplina Integração de Aplicações em Nuvem do curso de Computação em Nuvem da PUC Minas.",
+  "keywords": [
+    "cloud",
+    "native",
+    "computacao",
+    "em",
+    "nuvem",
+    "integracao",
+    "de",
+    "aplicacoes"
+  ],
+  "homepage": "https://github.com/Henriquemcc/cloudnativeapp#readme",
+  "bugs": {
+    "url": "https://github.com/Henriquemcc/cloudnativeapp/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Henriquemcc/cloudnativeapp.git"
+  },
+  "license": "ISC",
+  "author": "Henrique Mendonça Castelar Campos",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
