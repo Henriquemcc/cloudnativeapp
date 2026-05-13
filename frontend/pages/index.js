@@ -11,7 +11,7 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <div className={styles.description}>
-          <p>Welcome to Cloud Native App!</p>
+          <h1>Welcome to Cloud Native App!</h1>
         </div>
       </main>
     </>
