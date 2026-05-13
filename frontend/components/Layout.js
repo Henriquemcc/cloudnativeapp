@@ -2,8 +2,9 @@ import { CssBaseline } from "@mui/material";
 import { Box, ThemeProvider } from "@mui/system";
 import Header from "./Header";
 import Body from "./Body";
-import { menuItems } from "../utils/menuItems";
-import { defaultTheme } from "../utils/defaultTheme";
+import { menuItems } from "../config/menuItems";
+import defaultTheme from "../config/theme";
+
 export default function Layout({ children }) {
   const theme = defaultTheme;
   const menuContent = menuItems;
