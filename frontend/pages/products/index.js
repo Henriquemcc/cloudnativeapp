@@ -37,6 +37,10 @@ const editProduct = async (id) => {
   alert(`editProduct(): ${id}`);
 }
 
+const deleteProduct = async (id) => {
+  alert(`deleteProduct(): ${id}`);
+};
+
 export default function Products() {
   const [products, setProducts] = useState(productsList);
 
@@ -48,13 +52,14 @@ export default function Products() {
       <PageContent>
         <PageContentLabels labels={itemsLabels} />
         <PageContentItems products={products}
-        editProduct={editProduct} />
+        editProduct={editProduct}
+        deleteProduct={deleteProduct} />
       </PageContent>
     </List>
   );
 }
 
-function PageContentItems({ products }) {
+function PageContentItems({ products, editProduct, deleteProduct }) {
   return (
     <TableBody>
       {products.map((product) => (
@@ -67,7 +72,8 @@ function PageContentItems({ products }) {
           <TableCell>{product.rating}</TableCell>
           <PageContentActions
             id={product.id}
-            editProduct= {editProduct}/>
+            editProduct= {editProduct}
+            deleteProduct={deleteProduct}/>
         </TableRow>
       ))}
     </TableBody>
@@ -88,7 +94,7 @@ function PageActions({ createProduct }) {
   );
 }
 
-function PageContentActions({id, editProduct}) {
+function PageContentActions({id, editProduct, deleteProduct}) {
   return (
     <>
     <TableCell>
@@ -97,6 +103,14 @@ function PageContentActions({id, editProduct}) {
       variant="contained"
       onClick={() => editProduct(id)}>
         Edit
+      </Button>
+    </TableCell>
+    <TableCell>
+      <Button
+      size="small"
+      variant="contained"
+      onClick={() => deleteProduct(id)}>
+        Delete
       </Button>
     </TableCell>
     </>
