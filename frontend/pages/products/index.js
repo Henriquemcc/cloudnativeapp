@@ -33,6 +33,10 @@ const createProduct = async () => {
   alert('createProduct()');
 };
 
+const editProduct = async (id) => {
+  alert(`editProduct(): ${id}`);
+}
+
 export default function Products() {
   const [products, setProducts] = useState(productsList);
 
@@ -43,7 +47,8 @@ export default function Products() {
       </PageHeader>
       <PageContent>
         <PageContentLabels labels={itemsLabels} />
-        <PageContentItems products={products} />
+        <PageContentItems products={products}
+        editProduct={editProduct} />
       </PageContent>
     </List>
   );
@@ -60,6 +65,9 @@ function PageContentItems({ products }) {
           <TableCell>{product.category}</TableCell>
           <TableCell>{product.count}</TableCell>
           <TableCell>{product.rating}</TableCell>
+          <PageContentActions
+            id={product.id}
+            editProduct= {editProduct}/>
         </TableRow>
       ))}
     </TableBody>
@@ -78,4 +86,19 @@ function PageActions({ createProduct }) {
       </Button>
     </>
   );
+}
+
+function PageContentActions({id, editProduct}) {
+  return (
+    <>
+    <TableCell>
+      <Button
+      size="small"
+      variant="contained"
+      onClick={() => editProduct(id)}>
+        Edit
+      </Button>
+    </TableCell>
+    </>
+  )
 }
