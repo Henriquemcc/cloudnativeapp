@@ -3,6 +3,7 @@ import TableBody from "@mui/material/TableBody";
 import List from "@mui/material/List";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
+import Button from '@mui/material/Button';
 
 import PageHeader from "../../components/pagetemplate/PageHeader";
 import PageContent from "../../components/pagetemplate/PageContent";
@@ -24,12 +25,22 @@ const productsList = [
   { name: "P2", price: 2, category: "C2", count: 2, rating: 2, id: 2 },
 ];
 
+const getProducts = async () => {
+  setProducts(productsList);
+};
+
+const createProduct = async () => {
+  alert('createProduct()');
+};
+
 export default function Products() {
   const [products, setProducts] = useState(productsList);
 
   return (
     <List>
-      <PageHeader pageLabel={pageLabel}></PageHeader>
+      <PageHeader pageLabel={pageLabel}>
+        <PageActions createProduct={createProduct} />
+      </PageHeader>
       <PageContent>
         <PageContentLabels labels={itemsLabels} />
         <PageContentItems products={products} />
@@ -52,5 +63,19 @@ function PageContentItems({ products }) {
         </TableRow>
       ))}
     </TableBody>
+  );
+}
+
+function PageActions({ createProduct }) {
+  return (
+    <>
+      <Button
+        color="primary"
+        variant="contained"
+        onClick={() => createProduct()}
+      >
+        Create
+      </Button>
+    </>
   );
 }
