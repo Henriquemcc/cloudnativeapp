@@ -8,6 +8,7 @@ import Button from '@mui/material/Button';
 import PageHeader from "../../components/pagetemplate/PageHeader";
 import PageContent from "../../components/pagetemplate/PageContent";
 import PageContentLabels from "../../components/pagetemplate/PageContentLabels";
+import { useRouter } from "next/router";
 
 const pageLabel = "Products";
 const itemsLabels = [
@@ -25,24 +26,26 @@ const productsList = [
   { name: "P2", price: 2, category: "C2", count: 2, rating: 2, id: 2 },
 ];
 
-const getProducts = async () => {
-  setProducts(productsList);
-};
-
-const createProduct = async () => {
-  alert('createProduct()');
-};
-
-const editProduct = async (id) => {
-  alert(`editProduct(): ${id}`);
-}
-
-const deleteProduct = async (id) => {
-  alert(`deleteProduct(): ${id}`);
-};
-
 export default function Products() {
   const [products, setProducts] = useState(productsList);
+
+  const router = useRouter();
+
+  const createProduct = async () => {
+    router.push(`/products/-1`);
+  };
+
+  const getProducts = async () => {
+    setProducts(productsList);
+  };
+
+  const editProduct = async (id) => {
+    alert(`editProduct(): ${id}`);
+  }
+
+  const deleteProduct = async (id) => {
+    alert(`deleteProduct(): ${id}`);
+  };
 
   return (
     <List>
