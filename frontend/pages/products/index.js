@@ -40,7 +40,11 @@ export default function Products() {
   };
 
   const editProduct = async (id) => {
-    alert(`editProduct(): ${id}`);
+    try {
+      router.push(`/products/${id}`);
+    } catch (error) {
+      console.error(error.message);
+    }
   }
 
   const deleteProduct = async (id) => {
