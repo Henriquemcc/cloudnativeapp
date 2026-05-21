@@ -16,23 +16,15 @@ export default function Product() {
   const {
     control,
     handleSubmit,
-    watch,
-    setValue,
     formState: { errors },
   } = useForm();
 
-  const onSumbitForm = async () => {
-    const name = watch("name");
-    const price = watch("price");
-    const category = watch("category");
-    const count = watch("count");
-    const rating = watch("rating");
-    const body = { name, price, category, count, rating };
+  const onSumbitForm = async (data) => {
     try {
       if (id == "-1") {
-        alert(`insert new product`);
+        alert(`insert new product ${JSON.stringify(data)}`);
       } else {
-        alert(`update existing product`);
+        alert(`update existing product ${JSON.stringify(data)}`);
       }
       router.back();
     } catch (error) {
@@ -49,7 +41,7 @@ export default function Product() {
             <Card>
               <form onSubmit={handleSubmit(onSumbitForm)}>
                 <List>
-                  <ListItem>
+                  <Grid>
                     <ControllerTextField
                       name="name"
                       label="Name"
@@ -97,12 +89,12 @@ export default function Product() {
                       variant="contained"
                       type="submit"
                       fullWidth
-                      color="primary"
-                      href="/products/"
+                      color="inherit"
+                      onClick={() => router.push('/products')}
                     >
                       Cancel
                     </Button>
-                  </ListItem>
+                  </Grid>
                 </List>
               </form>
             </Card>
