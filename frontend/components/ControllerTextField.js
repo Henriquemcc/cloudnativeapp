@@ -14,7 +14,7 @@ export function ControllerTextField({ name, label, rules, control, errors }) {
             variant="outlined"
             fullWidth
             id={name}
-            label={lable}
+            label={label}
             error={Boolean(errors)}
             helperText={errors ? `${label} is required` : ""}
             {...TextField}
