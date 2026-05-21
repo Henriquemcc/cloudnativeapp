@@ -9,7 +9,7 @@ export function ControllerTextField({ name, label, rules, control, errors }) {
         control={control}
         defaultValue=""
         rules={rules}
-        render={({ field }) => {
+        render={({ field }) => (
           <TextField
             variant="outlined"
             fullWidth
@@ -18,8 +18,8 @@ export function ControllerTextField({ name, label, rules, control, errors }) {
             error={Boolean(errors)}
             helperText={errors ? `${label} is required` : ""}
             {...field}
-          ></TextField>;
-        }}
+          ></TextField>
+        )}
       />
     </>
   );
