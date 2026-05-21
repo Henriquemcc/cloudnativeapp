@@ -17,7 +17,7 @@ export function ControllerTextField({ name, label, rules, control, errors }) {
             label={label}
             error={Boolean(errors)}
             helperText={errors ? `${label} is required` : ""}
-            {...TextField}
+            {...field}
           ></TextField>;
         }}
       />
