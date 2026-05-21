@@ -4,7 +4,7 @@ import PageHeader from "../../components/pagetemplate/PageHeader";
 import PageContent from "../../components/pagetemplate/PageContent";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
-import { Card, Grid, ListItem } from "@mui/material";
+import { Button, Card, Grid, ListItem } from "@mui/material";
 import { ControllerTextField } from "@/components/ControllerTextField";
 
 const pageLabel = "Edit Product";
@@ -22,11 +22,11 @@ export default function Product() {
   } = useForm();
 
   const onSumbitForm = async () => {
-    const name = watch('name');
-    const price = watch('price');
-    const category = watch('category');
-    const count = watch('count');
-    const rating = watch('rating');
+    const name = watch("name");
+    const price = watch("price");
+    const category = watch("category");
+    const count = watch("count");
+    const rating = watch("rating");
     const body = { name, price, category, count, rating };
     try {
       if (id == "-1") {
@@ -85,6 +85,23 @@ export default function Product() {
                       errors={errors.rating}
                       rules={{ required: true }}
                     />
+                    <Button
+                      variant="contained"
+                      type="submit"
+                      fullWidth
+                      color="primary"
+                    >
+                      Save
+                    </Button>
+                    <Button
+                      variant="contained"
+                      type="submit"
+                      fullWidth
+                      color="primary"
+                      href="/products/"
+                    >
+                      Cancel
+                    </Button>
                   </ListItem>
                 </List>
               </form>
