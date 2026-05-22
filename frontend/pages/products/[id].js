@@ -41,7 +41,7 @@ export default function Product() {
             <Card>
               <form onSubmit={handleSubmit(onSumbitForm)}>
                 <List>
-                  <Grid>
+                  <ListItem>
                     <ControllerTextField
                       name="name"
                       label="Name"
@@ -49,6 +49,8 @@ export default function Product() {
                       errors={errors.name}
                       rules={{ required: true }}
                     />
+                  </ListItem>
+                  <ListItem>
                     <ControllerTextField
                       name="price"
                       label="Price"
@@ -56,6 +58,8 @@ export default function Product() {
                       errors={errors.price}
                       rules={{ required: true }}
                     />
+                  </ListItem>
+                  <ListItem>
                     <ControllerTextField
                       name="category"
                       label="Category"
@@ -63,6 +67,8 @@ export default function Product() {
                       errors={errors.category}
                       rules={{ required: true }}
                     />
+                  </ListItem>
+                  <ListItem>
                     <ControllerTextField
                       name="count"
                       label="Count"
@@ -70,6 +76,8 @@ export default function Product() {
                       errors={errors.count}
                       rules={{ required: true }}
                     />
+                  </ListItem>
+                  <ListItem>
                     <ControllerTextField
                       name="rating"
                       label="Rating"
@@ -77,6 +85,8 @@ export default function Product() {
                       errors={errors.rating}
                       rules={{ required: true }}
                     />
+                  </ListItem>
+                  <ListItem>
                     <Button
                       variant="contained"
                       type="submit"
@@ -85,6 +95,8 @@ export default function Product() {
                     >
                       Save
                     </Button>
+                  </ListItem>
+                  <ListItem>
                     <Button
                       variant="contained"
                       type="submit"
@@ -94,7 +106,7 @@ export default function Product() {
                     >
                       Cancel
                     </Button>
-                  </Grid>
+                  </ListItem>
                 </List>
               </form>
             </Card>
