@@ -9,6 +9,7 @@ import PageHeader from "../../components/pagetemplate/PageHeader";
 import PageContent from "../../components/pagetemplate/PageContent";
 import PageContentLabels from "../../components/pagetemplate/PageContentLabels";
 import { useRouter } from "next/router";
+import { getData } from "@/middlewares/data";
 
 const pageLabel = "Products";
 const itemsLabels = [
@@ -21,11 +22,6 @@ const itemsLabels = [
   "Actions",
 ];
 
-const productsList = [
-  { name: "P1", price: 1, category: "C1", count: 1, rating: 1, id: 1 },
-  { name: "P2", price: 2, category: "C2", count: 2, rating: 2, id: 2 },
-];
-
 export default function Products() {
   const [products, setProducts] = useState(productsList);
 
@@ -36,7 +32,12 @@ export default function Products() {
   };
 
   const getProducts = async () => {
-    setProducts(productsList);
+    try {
+      const jsonData = await getData('products');
+      setProducts(jsonData);
+    } catch (error) {
+      console.error(error.message);
+    }
   };
 
   const editProduct = async (id) => {
