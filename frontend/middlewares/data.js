@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const server = `http://${process.env.HOST}:${process.env.PORT}`;
+const server = `http://${process.env.API_HOST}:${process.env.API_PORT}`;
 
 axios.defaults.baseURL = server;
 axios.defaults.headers.post['Content-Type'] = "application/json";
@@ -10,7 +10,7 @@ export async function getData(resource) {
         const { data } = await axios.get(resource);
         return data;
     } catch (error) {
-        throw `Error while getting data: ${error}`;
+        throw new Error(`Error while getting data: ${error.message || error}`);
     }
 }
 
@@ -18,7 +18,7 @@ export async function postData(resource, body) {
     try {
         await axios.post(resource, body);
     } catch (error) {
-        throw `Error while posting data: ${error}`;
+        throw new Error(`Error while posting data: ${error.message || error}`);
     }
 }
 
@@ -26,7 +26,7 @@ export async function putData(resource, id, body) {
     try {
         await axios.put(`${resource}/${id}`, body);
     } catch (error) {
-        throw `Error while putting data: ${error}`;
+        throw new Error(`Error while putting data: ${error.message || error}`);
     }
 }
 
@@ -34,6 +34,6 @@ export async function deleteData(resource, id) {
     try {
         await axios.delete(`${resource}/${id}`);
     } catch (error) {
-        throw `Error while deleting data: ${error}`;
+        throw new Error(`Error while deleting data: ${error.message || error}`);
     }
 }
