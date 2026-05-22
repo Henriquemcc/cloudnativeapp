@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TableBody from "@mui/material/TableBody";
 import List from "@mui/material/List";
 import TableCell from "@mui/material/TableCell";
@@ -23,21 +23,12 @@ const itemsLabels = [
 ];
 
 export default function Products() {
-  const [products, setProducts] = useState(productsList);
+  const [products, setProducts] = useState([]);
 
   const router = useRouter();
 
   const createProduct = async () => {
     router.push(`/products/-1`);
-  };
-
-  const getProducts = async () => {
-    try {
-      const jsonData = await getData('products');
-      setProducts(jsonData);
-    } catch (error) {
-      console.error(error.message);
-    }
   };
 
   const editProduct = async (id) => {
@@ -52,6 +43,19 @@ export default function Products() {
     alert(`deleteProduct(): ${id}`);
   };
 
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        const jsonData = await getData('products');
+        setProducts(jsonData);
+      } catch (error) {
+        console.error(error.message);
+      }
+    };
+
+    getProducts();
+  }, []);
+
   return (
     <List>
       <PageHeader pageLabel={pageLabel}>
@@ -60,8 +64,8 @@ export default function Products() {
       <PageContent>
         <PageContentLabels labels={itemsLabels} />
         <PageContentItems products={products}
-        editProduct={editProduct}
-        deleteProduct={deleteProduct} />
+          editProduct={editProduct}
+          deleteProduct={deleteProduct} />
       </PageContent>
     </List>
   );
@@ -80,8 +84,8 @@ function PageContentItems({ products, editProduct, deleteProduct }) {
           <TableCell>{product.rating}</TableCell>
           <PageContentActions
             id={product.id}
-            editProduct= {editProduct}
-            deleteProduct={deleteProduct}/>
+            editProduct={editProduct}
+            deleteProduct={deleteProduct} />
         </TableRow>
       ))}
     </TableBody>
@@ -102,25 +106,25 @@ function PageActions({ createProduct }) {
   );
 }
 
-function PageContentActions({id, editProduct, deleteProduct}) {
+function PageContentActions({ id, editProduct, deleteProduct }) {
   return (
     <>
-    <TableCell>
-      <Button
-      size="small"
-      variant="contained"
-      onClick={() => editProduct(id)}>
-        Edit
-      </Button>
-    </TableCell>
-    <TableCell>
-      <Button
-      size="small"
-      variant="contained"
-      onClick={() => deleteProduct(id)}>
-        Delete
-      </Button>
-    </TableCell>
+      <TableCell>
+        <Button
+          size="small"
+          variant="contained"
+          onClick={() => editProduct(id)}>
+          Edit
+        </Button>
+      </TableCell>
+      <TableCell>
+        <Button
+          size="small"
+          variant="contained"
+          onClick={() => deleteProduct(id)}>
+          Delete
+        </Button>
+      </TableCell>
     </>
   )
 }
