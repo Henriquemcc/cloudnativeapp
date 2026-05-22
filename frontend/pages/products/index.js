@@ -49,7 +49,7 @@ export default function Products() {
         const jsonData = await getData('products');
         setProducts(jsonData);
       } catch (error) {
-        console.error(error.message);
+        console.error(error);
       }
     };
 
@@ -74,7 +74,7 @@ export default function Products() {
 function PageContentItems({ products, editProduct, deleteProduct }) {
   return (
     <TableBody>
-      {products.map((product) => (
+      {Array.isArray(products) && products.map((product) => (
         <TableRow key={product.id}>
           <TableCell>{product.id}</TableCell>
           <TableCell>{product.name}</TableCell>
