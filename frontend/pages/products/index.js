@@ -9,7 +9,7 @@ import PageHeader from "../../components/pagetemplate/PageHeader";
 import PageContent from "../../components/pagetemplate/PageContent";
 import PageContentLabels from "../../components/pagetemplate/PageContentLabels";
 import { useRouter } from "next/router";
-import { getData } from "@/middlewares/data";
+import { deleteData, getData } from "@/middlewares/data";
 
 const pageLabel = "Products";
 const itemsLabels = [
@@ -40,7 +40,12 @@ export default function Products() {
   }
 
   const deleteProduct = async (id) => {
-    alert(`deleteProduct(): ${id}`);
+    try {
+      await deleteData('products', id);
+      setProducts(products.filter((product) => product.id !== id));
+    } catch (error) {
+      console.error(error.message);
+    }
   };
 
   useEffect(() => {
