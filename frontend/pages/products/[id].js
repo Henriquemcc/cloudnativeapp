@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import List from "@mui/material/List";
 import PageHeader from "../../components/pagetemplate/PageHeader";
 import PageContent from "../../components/pagetemplate/PageContent";
@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { Button, Card, Grid, ListItem } from "@mui/material";
 import { ControllerTextField } from "@/components/ControllerTextField";
+import { getData, postData, putData } from "@/middlewares/data";
 
 const pageLabel = "Edit Product";
 
@@ -16,21 +17,47 @@ export default function Product() {
   const {
     control,
     handleSubmit,
+    watch,
+    setValue,
     formState: { errors },
   } = useForm();
 
   const onSumbitForm = async (data) => {
+    const name = watch('name');
+    const price = watch('price');
+    const category = watch('category');
+    const count = watch('count');
+    const rating = watch('rating');
+    const body = { name, price, category, count, rating };
     try {
       if (id == "-1") {
-        alert(`insert new product ${JSON.stringify(data)}`);
+        await postData('products', body);
       } else {
-        alert(`update existing product ${JSON.stringify(data)}`);
+        await putData('products', id, body);
       }
       router.back();
     } catch (error) {
       console.error(error.message);
     }
   };
+
+  useEffect(() => {
+    if (typeof id !== 'undefined' && id !== '-1') {
+      const fetchData = async () => {
+        try {
+          const data = await getData(`products/${id}`);
+          setValue('name', data.name);
+          setValue('price', data.price);
+          setValue('category', data.category);
+          setValue('count', data.count);
+          setValue('rating', data.rating);
+        } catch (error) {
+          console.error(error.message);
+        }
+      };
+      fetchData();
+    }
+  }, [id, setValue]);
 
   return (
     <List>
