@@ -1,10 +1,11 @@
 const express = require('express');
 const app = express();
+const welcomeMessage = 'Welcome to the backend module...';
 
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.send('Welcome to the backend module...');
+    res.send(welcomeMessage);
 });
 
 module.exports = app;
