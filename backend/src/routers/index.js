@@ -1,9 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const welcomeMessage = 'Welcome to the backend module...';
+const rootRouter = require('./root.router');
 
-router.get('/', (req, res) => {
-    res.send(welcomeMessage);
-});
+router.use('/', rootRouter);
 
 module.exports = router;
