@@ -33,7 +33,7 @@ test('Delete product', async () => {
     let product = await Product.create(productData);
     const response = await request.delete(`/products/${product.id}`);
     expect(response.status).toBe(200);
-    expect(response.text).toBe('Product deleted sucessfully');
+    expect(response.text).toBe('Product deleted successfully');
 });
 
 test('Update product', async () => {
