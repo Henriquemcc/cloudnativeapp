@@ -1,3 +1,4 @@
 exports.get = async (req, res) => {
-    res.send('Products list');
+    const returnMessage = 'Products list';
+    res.send(returnMessage);
 }
