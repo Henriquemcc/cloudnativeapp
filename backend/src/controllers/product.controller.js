@@ -16,4 +16,14 @@ exports.insert = async (req, res) => {
     } catch (error) {
         return res.status(500).send(error.message);
     }
-}
+};
+
+exports.getById = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const product = await Product.findByPk(id);
+        res.status(200).send(product);
+    } catch (error) {
+        return res.status(500).send(error.message);
+    }
+};
