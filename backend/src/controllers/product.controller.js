@@ -38,3 +38,15 @@ exports.delete = async (req, res) => {
         return res.status(500).send(error.message);
     }
 };
+
+exports.update = async (req, res) => {
+    try {
+        const id = req.params.id;
+        let product = await Product.findByPk(id);
+        product.set(req.body);
+        await product.save();
+        res.status(200).send(product);
+    } catch (error) {
+        return res.status(500).send(error.message);
+    }
+};
