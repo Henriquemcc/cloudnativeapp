@@ -145,3 +145,5 @@ dist
 backend/cloudnative-tes.db
 backend/cloudnative-dev.db
 backend/cloudnative.db
+backend/.env.development
+backend/.env.test
