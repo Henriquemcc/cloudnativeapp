@@ -14,7 +14,7 @@ Para executar este programa, siga os seguintes passos:
 
 ### Backend
 
-#### Criação dos arquivos de variáveis de ambiente
+#### Configuração das variáveis de ambiente
 
 Na pasta ```backend```:
 
@@ -69,6 +69,23 @@ NODE_ENV=development node src/server.js
 ```
 
 ### Frontend
+
+#### Configuração das variáveis de ambiente
+
+Na pasta ```frontend```:
+
+- Copie o arquivo ```.env.local.sample``` para ```.env.local```.
+
+- No arquivo ```.env.local```, defina o valor das variáveis: ```API_HOST``` e ```API_PORT```.
+
+Importante: O valor da variável ```API_PORT``` do frontend deve ser o mesmo da variável ```PORT``` do backend.
+
+Exemplo:
+
+```
+API_HOST=localhost
+API_PORT=3001
+```
 
 #### Instalação dos pacotes Node.js
 
