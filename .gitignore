@@ -148,3 +148,4 @@ backend/cloudnative.db
 backend/.env.development
 backend/.env.test
 backend/cloudnativedb-tes.db
+backend/cloudnativedb-dev.db
