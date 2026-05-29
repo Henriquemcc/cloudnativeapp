@@ -24,8 +24,8 @@ const formatter = format.combine(
 class Logger {
   constructor() {
     this.logger = createLogger({
-      level: config.syslog.levels,
-      level: "info",
+      levels: config.syslog.levels,
+      level: process.env.LOG_LEVEL || 'info',
       exitOnError: false,
       format: formatter,
     });
