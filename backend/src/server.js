@@ -5,5 +5,5 @@ Config.loadConfig();
 const port = process.env.PORT;
 
 app.listen(port, () => {
-    logger.info(`Backend module initialized on port ${port}`);
+  logger.info(`Backend module initialized on port ${port}`);
 });
