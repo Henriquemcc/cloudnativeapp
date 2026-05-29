@@ -1,13 +1,13 @@
-const express = require("express");
-const cors = require("cors");
-const morgan = require("morgan");
-const { logger } = require("./utils/logger");
+const express = require('express');
+const cors = require('cors');
+const morgan = require('morgan');
+const { logger } = require('./utils/logger');
 const app = express();
-const router = require("./routers");
+const router = require('./routers');
 
 app.use(express.json());
 app.use(
-  morgan("combined", {
+  morgan('combined', {
     stream: {
       write: (message) => {
         logger.info(message);
@@ -17,11 +17,11 @@ app.use(
 );
 
 var corsOptions = {
-  origin: "*",
+  origin: '*',
   optionsSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
 
-app.use("/", router);
+app.use('/', router);
 
 module.exports = app;
