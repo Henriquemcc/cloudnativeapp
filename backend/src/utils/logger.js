@@ -27,6 +27,7 @@ class Logger {
       level: config.syslog.levels,
       level: "info",
       exitOnError: false,
+      format: formatter,
     });
     this.logger.add(transportConsole);
     this.logger.add(transportFile);
