@@ -5,7 +5,7 @@ const fs = require('fs');
 
 class Config {
   static loadConfig() {
-    if (!process.env.NODE_ENV) {
+    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'undefined') {
       process.env.NODE_ENV = 'development';
     }
     this.envPath = `${process.cwd()}/.env.${process.env.NODE_ENV}`;
