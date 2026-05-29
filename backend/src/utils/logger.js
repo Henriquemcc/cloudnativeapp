@@ -1,6 +1,6 @@
 "use strict";
 
-const { createLogger, config, transports } = require("winston");
+const { createLogger, config, transports, format } = require("winston");
 
 const transportConsole = new transports.Console({
   handleExceptions: true,
@@ -10,6 +10,16 @@ const transportFile = new transports.File({
   filename: "tmp/backend.log",
   handleExceptions: true,
 });
+
+const formatter = format.combine(
+  format.timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
+  format.splat(),
+  format.printf((info) => {
+    const { timestamp, level, message, ...meta } = info;
+
+    return `${timestamp} [${level}]: ${message} ${Object.keys(meta).length ? JSON.stringify(meta, null, 2) : ""}`;
+  }),
+);
 
 class Logger {
   constructor() {
