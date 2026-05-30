@@ -8,5 +8,66 @@ jobs:
     build:
         runs-on: ubuntu-latest
         steps:
-            - name: example step
-              run: echo 'First pipeline'
+            - name: getting source code
+              uses: actions/checkout@v6
+
+            - name: setup Node.js
+              uses: actions/setup-node@v6
+              with:
+                node-version: '24'
+                cache: 'npm'
+            
+            - name: install frontend packages
+              run: npm --prefix frontend install
+
+            - name: install backend packages
+              run: npm --prefix backend install
+
+            - name: build frontend
+              run: npm --prefix frontend run build
+
+            - name: upload build artifacts
+              uses: actions/upload-artifact@v7
+              with:
+                name: package
+                path: frontend/.next
+
+    test:
+        needs: build
+        runs-on: ubuntu-latest
+        steps:
+            - name: getting source code
+              uses: actions/checkout@v6
+
+            - name: setup Node.js
+              uses: actions/setup-node@v6
+              with:
+                node-version: '24'
+                cache: 'npm'
+            
+            - name: install frontend packages
+              run: npm --prefix frontend install
+
+            - name: install backend packages
+              run: npm --prefix backend install
+
+            - name: run tests on frontend
+              run: npx jest
+              working-directory: frontend
+
+            - name: run tests on backend
+              run: npx jest
+              working-directory: backend
+
+    deploy:
+        needs: test
+        runs-on: ubuntu-latest
+        steps:
+            - name: print message
+              run: echo 'job deploy' 
+
+
+
+
+              
+
