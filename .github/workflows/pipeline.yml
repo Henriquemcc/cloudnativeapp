@@ -55,6 +55,15 @@ jobs:
               run: npx jest
               working-directory: frontend
 
+            - name: create .env.test
+              working-directory: backend
+              run: |
+                cat > .env.test << EOF
+                DB_DIALECT=${{ secrets.DB_DIALECT }}
+                DB_STORAGE=${{ secrets.DB_STORAGE }}
+                PORT=${{ secrets.PORT }}
+                EOF
+
             - name: applying migrations on the database
               run: NODE_ENV=test npx -p sequelize-cli sequelize db:migrate
               working-directory: backend
